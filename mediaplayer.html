@@ -119,7 +119,165 @@
 
         if (!online) {
             // No connection
-            connectionStatus.style display = "flex";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vidivintage</title>
+    <style>
+        body {
+            background-color: #FFA500; /* Orange background color */
+            color: #FFFFFF;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            padding: 10px;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin: 0;
+        }
+
+        .video-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 70vh;
+            background: url('https://github.com/wicorn29/Vidivintage/raw/main/graph-paper-grid-png-4.png');
+            background-size: cover;
+        }
+
+        .video-player {
+            max-width: 800px;
+        }
+
+        video {
+            width: 100%;
+        }
+
+        .controls {
+            margin: 20px;
+        }
+
+        button {
+            background-color: #333;
+            color: #FFFFFF;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #444;
+        }
+
+        #connectionStatus {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Light tint background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Vidivintage</h1>
+    </header>
+    <div class="video-container">
+        <div class="video-player">
+            <video id="video" controls controlsList="nodownload">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+    <div class="controls">
+        <button class="play-pause-button" id="play-pause-button">Play/Pause</button>
+        <button class "rewind-button" id "rewind-button">Rewind</button>
+        <button class="forward-button" id="forward-button">Forward</button>
+    </div>
+    <div id="connectionStatus">
+        <img src="https://github.com/wicorn29/Vidivintage/raw/main/no-icon-available.png" alt="No Connection">
+        <p>Cannot reach the server.</p>
+    </div>
+</body>
+<script>
+    const connectionStatus = document.getElementById("connectionStatus");
+    const video = document.getElementById("video");
+    const playPauseButton = document.getElementById("play-pause-button");
+
+    // Get the video source from the URL query parameter
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const videoSource = urlParams.get("src");
+
+    if (videoSource) {
+        console.log("Video source specified in the URL:", videoSource); // Log the video source
+        if (videoSource.endsWith(".mp4")) {
+            video.src = videoSource; // Set the video source
+            video.load();
+        }
+    }
+
+    function checkConnection() {
+        const online = navigator.onLine;
+
+        if (!online) {
+            // No connection
+            connectionStatus.style.display = "flex";
+            video.pause(); // Pause the video
+        } else {
+            // Connection is established
+            connectionStatus.style.display = "none";
+            if (!video.paused) {
+                video.play(); // Resume video playback
+            }
+        }
+    }
+
+    setInterval(checkConnection, 1000); // Check every 1 second
+
+    // Close the popup when connection is reestablished
+    window.addEventListener("online", () => {
+        connectionStatus.style.display = "none";
+        if (!video.paused) {
+            video.play(); // Resume video playback
+        }
+    });
+
+    // Open the popup when connection is lost
+    window.addEventListener("offline", () => {
+        connectionStatus.style.display = "flex";
+        video.pause(); // Pause the video
+    });
+
+    // Play/Pause button functionality
+    playPauseButton.addEventListener("click", () => {
+        if (video.paused) {
+            video.play();
+        } else {
+            video.pause();
+        }
+    });
+</script>
+</html>
+
             video.pause(); // Pause the video
         } else {
             // Connection is established
