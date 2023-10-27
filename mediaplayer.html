@@ -34,18 +34,20 @@
         }
 
         .video-player {
-            max-width: 800px;
+            max-width: 90%; /* Increase the width for a larger video */
         }
 
         video {
             width: 100%;
         }
 
-        .controls {
-            margin: 20px;
+        .custom-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        button {
+        .custom-button {
             background-color: #333;
             color: #FFFFFF;
             border: none;
@@ -56,7 +58,7 @@
             border-radius: 5px;
         }
 
-        button:hover {
+        .custom-button:hover {
             background-color: #444;
         }
 
@@ -81,15 +83,15 @@
     </header>
     <div class="video-container">
         <div class="video-player">
-            <video id="video" controls>
+            <video id="video" controls controlsList="nodownload">
                 Your browser does not support the video tag.
             </video>
         </div>
     </div>
-    <div class="controls">
-        <button class="play-pause-button" id="play-pause-button">Play/Pause</button>
-        <button class "rewind-button" id="rewind-button">Rewind</button>
-        <button class="forward-button" id="forward-button">Forward</button>
+    <div class="custom-controls">
+        <button class="custom-button" id="play-pause-button">Play/Pause</button>
+        <button class="custom-button" id="rewind-button">Rewind</button>
+        <button class="custom-button" id="forward-button">Forward</button>
     </div>
     <div id="connectionStatus">
         <img src="https://github.com/wicorn29/Vidivintage/raw/main/no-icon-available.png" alt="No Connection">
