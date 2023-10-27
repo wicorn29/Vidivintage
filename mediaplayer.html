@@ -34,7 +34,7 @@
         }
 
         .video-player {
-            max-width: 80%; /* Adjust the maximum width to control the size of the video player */
+            max-width: 800px;
         }
 
         video {
@@ -119,7 +119,7 @@
 
         if (!online) {
             // No connection
-            connectionStatus.style.display = "flex";
+            connectionStatus.style display = "flex";
             video.pause(); // Pause the video
         } else {
             // Connection is established
