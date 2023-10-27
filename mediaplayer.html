@@ -82,13 +82,14 @@
     <div class="video-container">
         <div class="video-player">
             <video id="video" controls>
+                <source src="https://github.com/wicorn29/Vidivintage/raw/main/yourvideo.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
         </div>
     </div>
     <div class="controls">
         <button class="play-pause-button" id="play-pause-button">Play/Pause</button>
-        <button class="rewind-button" id="rewind-button">Rewind</button>
+        <button class "rewind-button" id="rewind-button">Rewind</button>
         <button class="forward-button" id="forward-button">Forward</button>
     </div>
     <div id="connectionStatus">
@@ -100,17 +101,6 @@
     const connectionStatus = document.getElementById("connectionStatus");
     const video = document.getElementById("video");
     const playPauseButton = document.getElementById("play-pause-button");
-
-    // Get the video source from the URL query parameter
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    const videoSource = urlParams.get("src");
-
-    if (videoSource) {
-        setTimeout(() => {
-            video.src = videoSource; // Set the video source after a 2-second delay
-        }, 2000);
-    }
 
     function checkConnection() {
         const online = navigator.onLine;
