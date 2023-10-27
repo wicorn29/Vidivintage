@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vdivintage Confirmation: YT</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .confirmation-box {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .loading-animation {
+            display: none;
+        }
+
+        #redirect-button {
+            display: block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #0074cc;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="confirmation-box">
+        <h2>Redirect Confirmation</h2>
+        <p>You are being redirected to an external source commenly known as "YouTube".</p>
+        <div class="loading-animation">
+            Loading...
+        </div>
+        <button id="redirect-button">Continue</button>
+    </div>
+
+    <script>
+        const redirectButton = document.getElementById('redirect-button');
+        const loadingAnimation = document.querySelector('.loading-animation');
+
+        redirectButton.addEventListener('click', () => {
+            redirectButton.style.display = 'none';
+            loadingAnimation.style.display = 'block';
+
+            // Simulate a fake loading delay (3 seconds in this example)
+            setTimeout(() => {
+                window.location.href = 'https://www.youtube.com/shorts';
+            }, 300);
+        });
+    </script>
+</body>
+</html>
