@@ -97,6 +97,10 @@
     </div>
 </body>
 <script>
+    const connectionStatus = document.getElementById("connectionStatus");
+    const video = document.getElementById("video");
+    const playPauseButton = document.getElementById("play-pause-button");
+
     // Get the video source from the URL query parameter
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
@@ -105,5 +109,46 @@
     if (videoSource) {
         console.log("Video source specified in the URL:", videoSource); // Log the video source
     }
+
+    function checkConnection() {
+        const online = navigator.onLine;
+
+        if (!online) {
+            // No connection
+            connectionStatus.style.display = "flex";
+            video.pause(); // Pause the video
+        } else {
+            // Connection is established
+            connectionStatus.style.display = "none";
+            if (!video.paused) {
+                video.play(); // Resume video playback
+            }
+        }
+    }
+
+    setInterval(checkConnection, 1000); // Check every 1 second
+
+    // Close the popup when connection is reestablished
+    window.addEventListener("online", () => {
+        connectionStatus.style.display = "none";
+        if (!video.paused) {
+            video.play(); // Resume video playback
+        }
+    });
+
+    // Open the popup when connection is lost
+    window.addEventListener("offline", () => {
+        connectionStatus.style display = "flex";
+        video.pause(); // Pause the video
+    });
+
+    // Play/Pause button functionality
+    playPauseButton.addEventListener("click", () => {
+        if (video.paused) {
+            video.play();
+        } else {
+            video.pause();
+        }
+    });
 </script>
 </html>
