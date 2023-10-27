@@ -28,38 +28,19 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 70vh;
+            height: 90vh; /* Adjust the height as needed */
             background: url('https://github.com/wicorn29/Vidivintage/raw/main/graph-paper-grid-png-4.png');
             background-size: cover;
         }
 
-        .video-player {
-            max-width: 90%; /* Increase the width for a larger video */
-        }
-
         video {
             width: 100%;
+            height: 100%;
+            object-fit: contain; /* Adjust as needed */
         }
 
-        .custom-controls {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .custom-button {
-            background-color: #333;
-            color: #FFFFFF;
-            border: none;
-            padding: 10px 20px;
-            margin: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-        .custom-button:hover {
-            background-color: #444;
+        .controls {
+            display: none; /* Hide the controls on the main interface */
         }
 
         #connectionStatus {
@@ -82,16 +63,9 @@
         <h1>Vidivintage</h1>
     </header>
     <div class="video-container">
-        <div class="video-player">
-            <video id="video" controls controlsList="nodownload">
-                Your browser does not support the video tag.
-            </video>
-        </div>
-    </div>
-    <div class="custom-controls">
-        <button class="custom-button" id="play-pause-button">Play/Pause</button>
-        <button class="custom-button" id="rewind-button">Rewind</button>
-        <button class="custom-button" id="forward-button">Forward</button>
+        <video id="video" controlsList="nodownload">
+            Your browser does not support the video tag.
+        </video>
     </div>
     <div id="connectionStatus">
         <img src="https://github.com/wicorn29/Vidivintage/raw/main/no-icon-available.png" alt="No Connection">
@@ -101,7 +75,6 @@
 <script>
     const connectionStatus = document.getElementById("connectionStatus");
     const video = document.getElementById("video");
-    const playPauseButton = document.getElementById("play-pause-button");
 
     // Get the video source from the URL query parameter
     const queryString = window.location.search;
@@ -115,13 +88,6 @@
             video.load();
         }
     }
-
-    // Create an iframe element for the video frame
-    const videoFrame = document.createElement("iframe");
-    videoFrame.src = videoSource; // Set the source of the iframe
-
-    // Append the video frame to the body
-    document.body.appendChild(videoFrame);
 
     function checkConnection() {
         const online = navigator.onLine;
@@ -153,15 +119,6 @@
     window.addEventListener("offline", () => {
         connectionStatus.style.display = "flex";
         video.pause(); // Pause the video
-    });
-
-    // Play/Pause button functionality
-    playPauseButton.addEventListener("click", () => {
-        if (video.paused) {
-            video.play();
-        } else {
-            video.pause();
-        }
     });
 </script>
 </html>
