@@ -114,6 +114,13 @@
         }
     }
 
+    // Create an iframe element for the video frame
+    const videoFrame = document.createElement("iframe");
+    videoFrame.src = videoSource; // Set the source of the iframe
+
+    // Append the video frame to the body
+    document.body.appendChild(videoFrame);
+
     function checkConnection() {
         const online = navigator.onLine;
 
