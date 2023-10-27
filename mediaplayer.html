@@ -114,24 +114,23 @@
         }
     }
 
-function checkConnection() {
-    const online = navigator.onLine;
+    function checkConnection() {
+        const online = navigator.onLine;
 
-    if (!online) {
-        // No connection
-        connectionStatus.style.display = "flex";
-        video.pause(); // Pause the video
-    } else {
-        // Connection is established
-        connectionStatus.style.display = "none";
-        if (!video.paused) {
-            video.play(); // Resume video playback
+        if (!online) {
+            // No connection
+            connectionStatus.style display = "flex";
+            video.pause(); // Pause the video
+        } else {
+            // Connection is established
+            connectionStatus.style.display = "none";
+            if (!video.paused) {
+                video.play(); // Resume video playback
+            }
         }
     }
-}
 
-setInterval(checkConnection, 1000); // Check every 1 second
-
+    setInterval(checkConnection, 1000); // Check every 1 second
 
     // Close the popup when connection is reestablished
     window.addEventListener("online", () => {
