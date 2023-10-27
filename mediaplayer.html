@@ -108,6 +108,10 @@
 
     if (videoSource) {
         console.log("Video source specified in the URL:", videoSource); // Log the video source
+        if (videoSource.endsWith(".mp4")) {
+            video.src = videoSource; // Set the video source
+            video.load();
+        }
     }
 
     function checkConnection() {
