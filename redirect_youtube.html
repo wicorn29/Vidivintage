@@ -57,7 +57,9 @@
             const isWindowsMacOrChromebook = /Windows|Macintosh|CrOS/.test(navigator.userAgent);
 
             if (isWindowsMacOrChromebook) {
-                alert('Error code 13Z: This feature is restricted to mobile users only.');
+                alert('Error code 13Z: This feature is restricted to mobile users only for your best experience. Thank you for understanding.');
+                window.history.back();
+                window.location.href = 'wicorn29.github.io/Vidivintage';
             } else {
                 redirectButton.style.display = 'none';
                 loadingAnimation.style.display = 'block';
