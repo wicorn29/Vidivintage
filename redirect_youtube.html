@@ -42,7 +42,7 @@
 <body>
     <div class="confirmation-box">
         <h2>Redirect Confirmation</h2>
-        <p>You are being redirected to an external source commenly known as "YouTube".</p>
+        <p>You are being redirected to an external source commonly known as "YouTube".</p>
         <div class="loading-animation">
              
         </div>
@@ -54,13 +54,19 @@
         const loadingAnimation = document.querySelector('.loading-animation');
 
         redirectButton.addEventListener('click', () => {
-            redirectButton.style.display = 'none';
-            loadingAnimation.style.display = 'block';
+            const isWindowsMacOrChromebook = /Windows|Macintosh|CrOS/.test(navigator.userAgent);
 
-            // Simulate a fake loading delay (3 seconds in this example)
-            setTimeout(() => {
-                window.location.href = 'https://www.youtube.com/shorts';
-            }, 300);
+            if (isWindowsMacOrChromebook) {
+                alert('Error code 19Z: Your device needs more storage to do that.');
+            } else {
+                redirectButton.style.display = 'none';
+                loadingAnimation.style.display = 'block';
+
+                // Simulate a fake loading delay (3 seconds in this example)
+                setTimeout(() => {
+                    window.location.href = 'https://www.youtube.com/shorts';
+                }, 300);
+            }
         });
     </script>
 </body>
