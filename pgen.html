@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PIN Key Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .key-generator-box {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        #generate-button {
+            display: block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #0074cc;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="key-generator-box">
+        <h2>PIN Key Generator</h2>
+        <p>Click the button to generate a PIN key based on the current time:</p>
+        <p id="pin-key"></p>
+        <button id="generate-button">Generate</button>
+    </div>
+
+    <script>
+        const generateButton = document.getElementById('generate-button');
+        const pinKey = document.getElementById('pin-key');
+
+        generateButton.addEventListener('click', () => {
+            const currentTime = new Date();
+            const hours = currentTime.getHours().toString().padStart(2, '0');
+            const minutes = currentTime.getMinutes().toString().padStart(2, '0');
+            const pin = hours + minutes + '4';
+
+            pinKey.textContent = 'Generated PIN Key: ' + pin;
+        });
+    </script>
+</body>
+</html>
