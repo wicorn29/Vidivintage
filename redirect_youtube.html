@@ -41,32 +41,39 @@
 </head>
 <body>
     <div class="confirmation-box">
-        <h2>Redirect Confirmation</h2>
-        <p>You are being redirected to an external source commonly known as "YouTube".</p>
-        <div class="loading-animation">
+        <h2>Unlock Paywall</h2>
+        <p>Please enter the PIN to unlock the content:</p>
+        <input type="text" id="pin-input">
+        <button id="unlock-button">Unlock</button>
+        <div class="loading-animation" id="loading-animation">
              
         </div>
-        <button id="redirect-button">Continue</button>
     </div>
 
     <script>
-        const redirectButton = document.getElementById('redirect-button');
-        const loadingAnimation = document.querySelector('.loading-animation');
+        const pinInput = document.getElementById('pin-input');
+        const unlockButton = document.getElementById('unlock-button');
+        const loadingAnimation = document.getElementById('loading-animation');
 
-        redirectButton.addEventListener('click', () => {
-            const isWindowsMacOrChromebook = /Windows|Macintosh|CrOS/.test(navigator.userAgent);
+        unlockButton.addEventListener('click', () => {
+            const enteredPIN = pinInput.value;
+            const currentTime = new Date();
+            const hours = currentTime.getHours().toString().padStart(2, '0');
+            const minutes = currentTime.getMinutes().toString().padStart(2, '0');
+            const expectedPIN = hours + minutes + '4';
 
-            if (isWindowsMacOrChromebook) {
-                alert('Error code 13Z: This feature is restricted to mobile users only for your best experience. Thank you for understanding.');
-                window.location.href = 'https://wicorn29.github.io/Vidivintage';
-            } else {
-                redirectButton.style.display = 'none';
+            if (enteredPIN === expectedPIN) {
+                // Correct PIN, unlock the content
+                unlockButton.style.display = 'none';
                 loadingAnimation.style.display = 'block';
 
                 // Simulate a fake loading delay (3 seconds in this example)
                 setTimeout(() => {
                     window.location.href = 'https://www.youtube.com/shorts';
-                }, 300);
+                }, 3000);
+            } else {
+                // Incorrect PIN
+                alert('Incorrect PIN. Please try again.');
             }
         });
     </script>
