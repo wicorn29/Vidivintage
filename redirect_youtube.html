@@ -21,14 +21,16 @@
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .loading-animation {
             display: none;
         }
 
-        #redirect-button {
-            display: block;
+        #unlock-button {
             margin-top: 20px;
             padding: 10px 20px;
             background-color: #0074cc;
@@ -37,16 +39,33 @@
             border-radius: 5px;
             cursor: pointer;
         }
+
+        #pin-input {
+            margin-right: 10px;
+        }
+
+        #button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
     </style>
 </head>
 <body>
     <div class="confirmation-box">
-        <h2>Unlock Paywall</h2>
-        <p> Get a pin for one cent or get free pinsfor ever for a doller per day. Enter PIN:</p>
-        <input type="text" id="pin-input">
-        <button id="unlock-button">Unlock</button>
+        <h2>Access Blocker</h2>
+        <p>Enter a QuickPen OR Redeem a one-time-use gift card.</p>
+        <div id="button-container">
+            <div>
+                <input type="text" id="pin-input">
+                <button id="unlock-button">Unlock</button>
+            </div>
+            <!-- "Redeem Gift Card" button linking to example.com -->
+            <!-- "Redeem Gift Card" link to https://wicorn29.github.io/Vidivintage/YTS_CODE_REDEEM.html -->
+<a href="https://wicorn29.github.io/Vidivintage/YTS_CODE_REDEEM.html" id="redeem-gift-card-button">Redeem Gift Card</a>
+
+        </div>
         <div class="loading-animation" id="loading-animation">
-             
         </div>
     </div>
 
